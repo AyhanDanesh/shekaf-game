@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d18">
+<title>شکاف | بازی دونفره آنلاین</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#090c16;--panel:#111727;--panel2:#151e31;--line:#29354c;--muted:#9ba8c2;--text:#f4f7ff;--cyan:#52f2dc;--pink:#ff5d97;--gold:#ffd66b;--red:#ff697d;--green:#73f0a5;}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(ellipse at 12% 0%,#1a2840 0%,transparent 42%),radial-gradient(ellipse at 90% 15%,#24152d 0%,transparent 37%),var(--bg);color:var(--text);font-family:'Vazirmatn',Tahoma,Arial,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.app{max-width:1180px;margin:auto;padding:20px 18px 36px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--cyan),#3f8cff);display:grid;place-items:center;color:#061018;font-size:24px;font-weight:900;box-shadow:0 0 28px #52f2dc35}.brand h1{font-size:23px;margin:0;letter-spacing:-.5px}.brand p{font-size:12px;color:var(--muted);margin:0}.online-pill{font-size:12px;color:var(--green);border:1px solid #73f0a530;background:#73f0a50c;padding:7px 11px;border-radius:100px;display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}.screen{display:none}.screen.active{display:block}.intro{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch}.hero{padding:26px 8px 26px 4px;display:flex;flex-direction:column;justify-content:center}.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:10px}.hero h2{font-size:clamp(30px,4vw,50px);line-height:1.3;margin:0 0 13px;letter-spacing:-1px}.hero h2 span{color:var(--cyan)}.hero p{color:#bac5d8;line-height:2;max-width:490px;font-size:14px;margin:0 0 22px}.feature-row{display:flex;flex-wrap:wrap;gap:8px}.feature{border:1px solid var(--line);color:#cbd5e7;background:#101626;padding:8px 11px;border-radius:11px;font-size:12px}.setup,.game-panel{border:1px solid #29354b;background:linear-gradient(155deg,#141c2d,#0e1421);border-radius:22px;padding:22px;box-shadow:0 20px 80px #0003}.setup h3{margin:0 0 5px;font-size:19px}.muted{color:var(--muted);font-size:12px;line-height:1.9}.field-label{font-size:12px;color:#d4dcee;margin:18px 0 7px;display:block}.text-input{width:100%;border:1px solid #34425b;background:#090f1c;color:white;padding:12px 13px;border-radius:12px;outline:none}.text-input::placeholder{color:#72809b}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mode-card{border:1px solid #34415b;background:#0d1422;color:var(--text);padding:14px 12px;text-align:right;border-radius:15px;transition:.15s}.mode-card.active{border-color:var(--cyan);background:#52f2dc0c;box-shadow:inset 0 0 0 1px #52f2dc32}.mode-icon{font-size:23px;display:block;margin-bottom:5px}.mode-card b{display:block;font-size:13px;margin-bottom:3px}.mode-card small{color:var(--muted);font-size:11px;line-height:1.7}.join-row{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:17px}.primary{border:0;background:linear-gradient(100deg,var(--cyan),#83f2cb);color:#07131a;font-weight:900;border-radius:12px;padding:12px 17px;box-shadow:0 7px 26px #52f2dc1b}.primary:hover{filter:brightness(1.06)}.secondary{background:#1c273b;color:#e8efff;border:1px solid #36435b;border-radius:12px;padding:10px 13px}.error{color:#ff94a6;min-height:20px;margin:10px 0 0;font-size:12px}.tiny-note{font-size:11px;color:#8d9cb6;line-height:1.8;margin-top:15px}.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:22px 0 11px}.section-title h3{font-size:15px;margin:0}.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.how{padding:14px;border:1px solid #222e43;border-radius:15px;background:#0d1320}.how .num{font-size:11px;color:var(--cyan);font-weight:900}.how b{display:block;font-size:13px;margin:6px 0}.how p{margin:0;font-size:11px;color:var(--muted);line-height:1.9}
+/* match */
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}.room-meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.room-chip{border:1px solid #34415b;background:#111a2a;padding:8px 11px;border-radius:10px;font-size:12px;color:#e8efff}.room-chip strong{color:var(--cyan);letter-spacing:1.5px}.actions{display:flex;gap:8px}.tiny-btn{border:1px solid #36435b;background:#131c2c;color:#eaf1ff;padding:8px 10px;border-radius:10px;font-size:12px}.tiny-btn:hover{border-color:var(--cyan)}.hud{display:grid;grid-template-columns:1fr minmax(100px,.45fr) 1fr;gap:10px;margin-bottom:10px}.hud-card{border:1px solid #263249;background:#111827;border-radius:13px;padding:10px 13px;min-width:0}.hud-card .label{color:var(--muted);font-size:10px}.hud-card .val{font-weight:900;font-size:20px;display:flex;gap:7px;align-items:center;white-space:nowrap}.hud-card.left .val{color:var(--cyan)}.hud-card.right .val{color:var(--pink)}.hud-card.center{text-align:center}.hud-card.center .val{justify-content:center;color:var(--gold);font-size:18px}.hud-sub{color:#8c9ab3;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.arena-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid #35415a;background:#090f1a;box-shadow:0 15px 45px #0004}.arena{display:block;width:100%;height:auto;aspect-ratio:1000/650;touch-action:none}.match-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#080d18bd;backdrop-filter:blur(5px);padding:16px}.match-overlay.hidden{display:none}.overlay-card{text-align:center;background:#121c2e;border:1px solid #34445e;padding:22px 28px;border-radius:19px;max-width:380px;width:100%;box-shadow:0 15px 60px #0006}.overlay-icon{font-size:32px}.overlay-card h3{margin:6px 0;font-size:21px}.overlay-card p{font-size:12px;color:#b0bfd6;line-height:2;margin:0 0 15px}.overlay-card .primary{min-width:150px}.bottom-controls{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap}.control-hint{font-size:11px;color:#9caac1;line-height:1.9}.key{display:inline-grid;place-items:center;min-width:24px;padding:2px 5px;border:1px solid #394761;background:#141d2c;color:#ecf2ff;border-radius:5px;font-family:Arial,sans-serif;font-weight:700;margin:0 2px}.mobile-controls{display:none;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:12px;border:1px solid #25334a;border-radius:15px;background:#0e1523}.dpad{display:grid;grid-template-columns:42px 42px 42px;grid-template-rows:42px 42px 42px;gap:4px}.touch-key{border:1px solid #35455f;background:#18243a;color:#eaf3ff;border-radius:12px;font-size:15px;touch-action:none;user-select:none}.touch-key:active,.touch-key.held{background:#263c59;border-color:var(--cyan)}.touch-empty{visibility:hidden}.action-pad{display:flex;gap:9px}.action-key{width:63px;height:63px;border-radius:50%;font-size:12px;font-weight:800}.action-key.attack{border:1px solid #52f2dc;background:#143331;color:var(--cyan)}.action-key.dash{border:1px solid #ff5d97;background:#351c2b;color:#ff90b6}.footnote{margin-top:17px;color:#71809a;font-size:10px;text-align:center}
+@media(max-width:800px){.intro{grid-template-columns:1fr}.hero{padding:10px 2px 0}.hero h2{font-size:35px}.hero p{margin-bottom:10px}.setup{padding:18px}.how-grid{grid-template-columns:1fr}.how{display:grid;grid-template-columns:34px 1fr;column-gap:8px}.how .num{grid-row:span 2}.how b{margin:0 0 3px}.how p{grid-column:2}.app{padding:14px 11px 26px}.topbar{margin-bottom:12px}.hud{grid-template-columns:1fr 85px 1fr;gap:6px}.hud-card{padding:8px}.hud-card .val{font-size:16px}.hud-card.center .val{font-size:15px}.hud-sub{font-size:9px}.mobile-controls{display:flex}.control-hint{display:none}.bottom-controls{margin-top:9px}.game-panel{padding:11px;border-radius:17px}.game-top{margin-bottom:8px}.actions .tiny-btn{font-size:11px;padding:7px 8px}.room-chip{padding:7px 9px}.arena-wrap{border-radius:11px}}
+@media(max-width:390px){.brand h1{font-size:19px}.online-pill{font-size:10px}.dpad{grid-template-columns:36px 36px 36px;grid-template-rows:36px 36px 36px}.action-key{width:54px;height:54px;font-size:10px}.join-row{grid-template-columns:1fr}.mode-grid{gap:7px}.mode-card{padding:11px 9px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">✦</div><div><h1>شکاف <span style="color:var(--cyan)">/ SHEKAF</span></h1><p>میدان دونفره؛ یک اتاق، دو رقیب</p></div></div>
+    <div class="online-pill"><span class="dot"></span><span>بازی آنلاین دو نفره</span></div>
+  </header>
+
+  <main id="homeScreen" class="screen active">
+    <section class="intro">
+      <div class="hero">
+        <div class="eyebrow">MOVE · THINK · OUTPLAY</div>
+        <h2>همدیگه رو شکست بدید؛<br><span>یا با هم زنده بمونید.</span></h2>
+        <p>یک میدان جمع‌وجور با تصمیم‌های سریع، انرژی‌های سرگردان و ضربه‌های دقیق. لینک دعوت را بفرست و از دو دستگاه، حتی از دو شهر متفاوت، بازی کنید.</p>
+        <div class="feature-row"><span class="feature">🌐 آنلاین از شهرهای مختلف</span><span class="feature">⚡ جاخالی سریع</span><span class="feature">✦ جمع‌کردن انرژی</span><span class="feature">⌁ حمله جهت‌دار</span><span class="feature">◉ رقابتی و همکاری</span></div>
+      </div>
+      <section class="setup">
+        <h3>ورود به میدان</h3><div class="muted">یک اتاق بساز و لینک دعوتش را بفرست؛ دوستت از هر شهر با گوشی وصل می‌شود.</div>
+        <label class="field-label" for="playerName">اسم بازیکن</label>
+        <input id="playerName" class="text-input" maxlength="14" placeholder="مثلاً آیهان" autocomplete="nickname">
+        <span class="field-label">حالت بازی</span>
+        <div class="mode-grid">
+          <button class="mode-card active" data-mode="duel" type="button"><span class="mode-icon">⚔️</span><b>دوئل انرژی</b><small>۱۰ امتیاز جمع کن و حریفت رو عقب بنداز.</small></button>
+          <button class="mode-card" data-mode="coop" type="button"><span class="mode-icon">🛡️</span><b>همکاری بقا</b><small>با هم انرژی جمع کنید و جلوی پهپادها دوام بیارید.</small></button>
+        </div>
+        <label class="field-label" for="roomCode">کد اتاق (برای ساخت اتاق خالی بگذار)</label>
+        <input id="roomCode" class="text-input" maxlength="6" placeholder="مثلاً A7K9" autocapitalize="characters" spellcheck="false">
+        <div class="join-row"><button id="joinBtn" class="primary" type="button">ساخت اتاق و ورود ↗</button><button id="randomBtn" class="secondary" type="button" title="ساخت کد جدید">کد جدید</button></div>
+        <div id="homeError" class="error" role="status"></div>
+        <div class="tiny-note">نکته: هر دو نفر باید آدرس همین بازی را باز کنند. میزبان حالت بازی را انتخاب می‌کند و لینک دعوت را می‌فرستد. هر دو باید اینترنت داشته باشید.</div>
+      </section>
+    </section>
+    <div class="section-title"><h3>چطور بازی کنید؟</h3><span class="muted">ساده برای یادگیری، سخت برای حرفه‌ای شدن</span></div>
+    <section class="how-grid">
+      <div class="how"><div class="num">۰۱</div><b>حرکت و جاخالی</b><p>با WASD یا کلیدهای جهت‌دار حرکت کن. با Shift یک جهش کوتاه بزن و از ضربه یا پهپاد فرار کن.</p></div>
+      <div class="how"><div class="num">۰۲</div><b>حمله در لحظه درست</b><p>با Space یا J حمله کن. در دوئل، جهت نگاهت مهم است؛ در همکاری، نزدیک پهپادها شو و آن‌ها را بزن.</p></div>
+      <div class="how"><div class="num">۰۳</div><b>با کد به هم وصل شوید</b><p>بازی که نفر دوم وارد اتاق شود شروع می‌شود. هر دو می‌توانید روی کامپیوتر یا گوشی بازی کنید.</p></div>
+    </section>
+  </main>
+
+  <main id="gameScreen" class="screen">
+    <section class="game-panel">
+      <div class="game-top">
+        <div class="room-meta"><div class="room-chip">اتاق <strong id="roomLabel">----</strong></div><div class="room-chip" id="modeLabel">دوئل انرژی</div><div class="room-chip" id="playersLabel">۱ / ۲ بازیکن</div></div>
+        <div class="actions"><button id="copyInviteBtn" class="tiny-btn" type="button">کپی دعوت</button><button id="leaveBtn" class="tiny-btn" type="button">خروج</button></div>
+      </div>
+      <div class="hud">
+        <div class="hud-card left"><div class="label" id="p1Label">بازیکن ۱</div><div class="val"><span id="p1Score">0</span><span id="p1Extra" class="hud-sub">انرژی</span></div></div>
+        <div class="hud-card center"><div class="label">زمان باقی‌مانده</div><div class="val" id="timeLabel">02:00</div><div class="hud-sub" id="objectiveLabel">اول به ۱۰ برس</div></div>
+        <div class="hud-card right"><div class="label" id="p2Label">بازیکن ۲</div><div class="val"><span id="p2Score">0</span><span id="p2Extra" class="hud-sub">انرژی</span></div></div>
+      </div>
+      <div class="arena-wrap">
+        <canvas id="arena" class="arena" width="1000" height="650" aria-label="میدان بازی"></canvas>
+        <div id="matchOverlay" class="match-overlay">
+          <div class="overlay-card"><div class="overlay-icon" id="overlayIcon">◌</div><h3 id="overlayTitle">در انتظار بازیکن دوم...</h3><p id="overlayText">لینک دعوت را برای دوستت بفرست تا از راه دور وارد شود.</p><button id="overlayBtn" class="primary" type="button">کپی کد اتاق</button></div>
+        </div>
+      </div>
+      <div class="bottom-controls">
+        <div class="control-hint"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> حرکت &nbsp; <span class="key">SPACE</span> حمله &nbsp; <span class="key">SHIFT</span> جاخالی</div>
+        <div class="control-hint" id="statusHint">با ورود دوستت بازی شروع می‌شود؛ میزبان صفحه را نبندد.</div>
+      </div>
+      <div class="mobile-controls" aria-label="کنترل‌های لمسی">
+        <div class="dpad">
+          <span class="touch-empty"></span><button class="touch-key" data-key="ArrowUp" type="button">▲</button><span class="touch-empty"></span>
+          <button class="touch-key" data-key="ArrowLeft" type="button">◀</button><button class="touch-key" data-key="touchCenter" type="button" disabled>●</button><button class="touch-key" data-key="ArrowRight" type="button">▶</button>
+          <span class="touch-empty"></span><button class="touch-key" data-key="ArrowDown" type="button">▼</button><span class="touch-empty"></span>
+        </div>
+        <div class="action-pad"><button class="touch-key action-key attack" data-key="Space" type="button">حمله<br>⚡</button><button class="touch-key action-key dash" data-key="ShiftLeft" type="button">جاخالی<br>➜</button></div>
+      </div>
+    </section>
+    <div class="footnote">شکاف · نسخهٔ آنلاین P2P · میزبان باید صفحهٔ بازی را باز نگه دارد.</div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.5/dist/peerjs.min.js"></script>
+<script>if(!window.Peer){document.write('<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"><\/script>');}</script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const homeScreen = $('#homeScreen'), gameScreen = $('#gameScreen');
+  const roomInput = $('#roomCode'), nameInput = $('#playerName'), homeError = $('#homeError');
+  const canvas = $('#arena'), ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const WALLS = [{x:445,y:115,w:110,h:62},{x:445,y:473,w:110,h:62},{x:250,y:292,w:78,h:66},{x:672,y:292,w:78,h:66}];
+  let selectedMode = 'duel', peer = null, hostConn = null, myId = null, roomCode = '', activeMode = 'duel', latest = null, joinPending = false;
+  let role = '', hostPeerId = '', invitationURL = '', hostRoom = null, hostPlayerId = null, hostTick = null;
+  const connections = new Set();
+  const keys = new Set();
+  let lastInputSend = 0, connectionLost = false;
+  const params = new URLSearchParams(location.search);
+  const invitedPeerId = params.get('joinPeer') || '';
+  if (params.get('room')) roomInput.value = params.get('room').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+  if (invitedPeerId) $('#joinBtn').textContent = 'ورود به اتاق دوست ↗';
+
+  function setScreen(which) { homeScreen.classList.toggle('active', which === 'home'); gameScreen.classList.toggle('active', which === 'game'); }
+  function generateCode() { const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let out=''; for(let i=0;i<4;i++) out+=chars[Math.floor(Math.random()*chars.length)]; return out; }
+  $('#randomBtn').addEventListener('click', () => { roomInput.value = generateCode(); roomInput.focus(); });
+  document.querySelectorAll('.mode-card').forEach(btn => btn.addEventListener('click', () => {
+    selectedMode = btn.dataset.mode;
+    document.querySelectorAll('.mode-card').forEach(b => b.classList.toggle('active', b === btn));
+  }));
+  function setError(message) { homeError.textContent = message || ''; }
+  function invitationFor(peerId, code, mode) {
+    const u = new URL(location.href);
+    u.search = '';
+    u.searchParams.set('joinPeer', peerId);
+    u.searchParams.set('room', code);
+    u.searchParams.set('mode', mode);
+    return u.toString();
+  }
+  function acceptMessage(msg) {
+    if (!msg || typeof msg !== 'object') return;
+    if (msg.type === 'joined') {
+      joinPending = false; myId = msg.id; roomCode = msg.room; activeMode = msg.mode; setScreen('game');
+      $('#roomLabel').textContent = roomCode;
+      $('#modeLabel').textContent = activeMode === 'coop' ? 'همکاری بقا' : 'دوئل انرژی';
+      $('#statusHint').textContent = role === 'host' ? 'لینک دعوت را برای دوستت بفرست.' : 'به میزبان وصل شدی؛ در حال همگام‌سازی...';
+      const u = new URL(location.href); u.searchParams.set('room', roomCode); history.replaceState(null,'',u.toString());
+      setError(''); updateOverlay();
+    } else if (msg.type === 'state') {
+      latest = msg.state; if (!roomCode) roomCode = msg.state.room; updateUI();
+    } else if (msg.type === 'error') {
+      joinPending = false; setError(msg.message || 'اتصال ناموفق بود.');
+      if (hostConn) { try { hostConn.close(); } catch {} hostConn = null; }
+    }
+  }
+  function safeName(value) { return String(value || 'بازیکن').replace(/[<>\u0000-\u001f]/g, '').trim().slice(0,14) || 'بازیکن'; }
+  function randomId() { return Math.random().toString(36).slice(2,10) + Math.random().toString(36).slice(2,6); }
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+  function circleRect(cx, cy, r, rect) {
+    const x = Math.max(rect.x, Math.min(cx, rect.x + rect.w));
+    const y = Math.max(rect.y, Math.min(cy, rect.y + rect.h));
+    return (cx - x) ** 2 + (cy - y) ** 2 < r * r;
+  }
+  function makeOrb() {
+    for (let i = 0; i < 40; i++) {
+      const orb = { id: randomId(), x: rand(65, W - 65), y: rand(65, H - 65), pulse: rand(0, Math.PI * 2) };
+      if (!WALLS.some(w => circleRect(orb.x, orb.y, 23, w))) return orb;
+    }
+    return { id: randomId(), x: rand(70, W - 70), y: rand(70, H - 70), pulse: 0 };
+  }
+  function newPlayer(name, slot) {
+    return { id: randomId(), name: safeName(name), slot,
+      x: slot === 0 ? 115 : W - 115, y: slot === 0 ? H - 100 : 100,
+      faceX: slot === 0 ? 1 : -1, faceY: 0, score: 0, hp: 3,
+      input: { dx: 0, dy: 0, attack: false, dash: false }, prevAttack: false, prevDash: false,
+      attackCooldown: 0, dashCooldown: 0, dashTime: 0, invuln: 0, attackFlash: 0, flash: 0 };
+  }
+  function makeRoom(code, mode) {
+    return { code, mode: mode === 'coop' ? 'coop' : 'duel', players: new Map(), status: 'waiting', winner: null, result: '', score: 0,
+      orbs: [], drones: [], elapsed: 0, timeLeft: 150, spawnTimer: 0 };
+  }
+  function resetPlayer(p, slot) {
+    p.slot=slot; p.x=slot===0?115:W-115; p.y=slot===0?H-100:100; p.faceX=slot===0?1:-1; p.faceY=0;
+    p.score=0; p.hp=3; p.input={dx:0,dy:0,attack:false,dash:false}; p.prevAttack=false; p.prevDash=false;
+    p.attackCooldown=0; p.dashCooldown=0; p.dashTime=0; p.invuln=0; p.attackFlash=0; p.flash=0;
+  }
+  function startRoom(room) {
+    const ps=[...room.players.values()]; if(ps.length<2){room.status='waiting';return;}
+    ps.forEach((p,i)=>resetPlayer(p,i)); room.status='playing';room.winner=null;room.result='';room.score=0;room.elapsed=0;
+    room.timeLeft=room.mode==='duel'?120:150;room.orbs=Array.from({length:room.mode==='duel'?6:5},makeOrb);room.drones=[];room.spawnTimer=1.2;
+  }
+  function movePlayer(p, dt) {
+    const input=p.input; let dx=input.dx||0,dy=input.dy||0; const mag=Math.hypot(dx,dy);
+    if(mag>1){dx/=mag;dy/=mag;} if(Math.abs(dx)+Math.abs(dy)>0.01){p.faceX=dx;p.faceY=dy;}
+    p.attackCooldown=Math.max(0,p.attackCooldown-dt);p.dashCooldown=Math.max(0,p.dashCooldown-dt);p.invuln=Math.max(0,p.invuln-dt);
+    p.attackFlash=Math.max(0,p.attackFlash-dt);p.flash=Math.max(0,p.flash-dt);
+    if(input.dash&&!p.prevDash&&p.dashCooldown<=0){p.dashTime=.16;p.dashCooldown=1.45;p.invuln=Math.max(p.invuln,.22);if(mag<.1){dx=p.faceX;dy=p.faceY;}}
+    p.prevDash=input.dash;if(p.dashTime>0)p.dashTime=Math.max(0,p.dashTime-dt);const speed=p.dashTime>0?640:255;
+    const nx=p.x+dx*speed*dt;if(!WALLS.some(w=>circleRect(nx,p.y,18,w)))p.x=Math.max(22,Math.min(W-22,nx));
+    const ny=p.y+dy*speed*dt;if(!WALLS.some(w=>circleRect(p.x,ny,18,w)))p.y=Math.max(22,Math.min(H-22,ny));
+  }
+  function attackPlayer(p, room) {
+    if(p.attackCooldown>0)return;p.attackCooldown=.52;p.attackFlash=.20;
+    if(room.mode==='duel'){
+      for(const target of room.players.values()){
+        if(target.id===p.id||target.invuln>0)continue;const vx=target.x-p.x,vy=target.y-p.y,dist=Math.hypot(vx,vy)||1;
+        const facing=(vx/dist)*p.faceX+(vy/dist)*p.faceY;
+        if(dist<104&&facing>.25){target.invuln=.65;target.flash=.22;target.x=Math.max(24,Math.min(W-24,target.x+(vx/dist)*48));target.y=Math.max(24,Math.min(H-24,target.y+(vy/dist)*48));if(target.score>0)target.score-=1;break;}
+      }
+    } else {
+      for(let i=room.drones.length-1;i>=0;i--){const d=room.drones[i];if(Math.hypot(d.x-p.x,d.y-p.y)<112){room.drones.splice(i,1);room.score+=1;break;}}
+    }
+  }
+  function spawnDrone(room) {
+    const side=Math.floor(Math.random()*4);const x=side===0?28:side===1?W-28:rand(35,W-35);const y=side===2?28:side===3?H-28:rand(35,H-35);
+    room.drones.push({id:randomId(),x,y,phase:rand(0,6.28),speed:rand(72,95)+room.elapsed*.14});
+  }
+  function endRoom(room,winner,result){room.status='ended';room.winner=winner;room.result=result;}
+  function updateRoom(room,dt) {
+    if(room.status!=='playing')return;room.elapsed+=dt;room.timeLeft=Math.max(0,room.timeLeft-dt);
+    for(const p of room.players.values()){
+      if(room.mode==='coop'&&p.hp<=0){p.input={dx:0,dy:0,attack:false,dash:false};p.prevAttack=false;p.prevDash=false;continue;}
+      movePlayer(p,dt);if(p.input.attack&&!p.prevAttack)attackPlayer(p,room);p.prevAttack=p.input.attack;
+    }
+    if(room.mode==='duel'){
+      for(const orb of room.orbs)orb.pulse+=dt*4;
+      for(const p of room.players.values())for(let i=room.orbs.length-1;i>=0;i--){const o=room.orbs[i];if(Math.hypot(p.x-o.x,p.y-o.y)<31){p.score+=1;room.orbs.splice(i,1);room.orbs.push(makeOrb());if(p.score>=10){endRoom(room,p.id,`${p.name} به ۱۰ امتیاز رسید!`);break;}}}
+      if(room.status==='playing'&&room.timeLeft<=0){const ps=[...room.players.values()];if(ps[0].score===ps[1].score)endRoom(room,'draw','بازی مساوی شد!');else{const win=ps.sort((a,b)=>b.score-a.score)[0];endRoom(room,win.id,`${win.name} برنده شد!`);}}
+    } else {
+      room.spawnTimer-=dt;if(room.spawnTimer<=0&&room.drones.length<11){spawnDrone(room);room.spawnTimer=Math.max(.75,2.2-room.elapsed*.006);}
+      for(const orb of room.orbs)orb.pulse+=dt*4;
+      for(const p of room.players.values())if(p.hp>0)for(let i=room.orbs.length-1;i>=0;i--){const o=room.orbs[i];if(Math.hypot(p.x-o.x,p.y-o.y)<31){room.score+=1;room.orbs.splice(i,1);room.orbs.push(makeOrb());}}
+      for(const d of room.drones){let target=null,best=Infinity;for(const p of room.players.values()){if(p.hp<=0)continue;const dis=Math.hypot(p.x-d.x,p.y-d.y);if(dis<best){best=dis;target=p;}}
+        if(!target)continue;const dx=target.x-d.x,dy=target.y-d.y,dist=Math.hypot(dx,dy)||1;d.x+=dx/dist*d.speed*dt;d.y+=dy/dist*d.speed*dt;d.phase+=dt*4;
+        if(dist<27&&target.invuln<=0){target.hp=Math.max(0,target.hp-1);target.invuln=1.35;target.flash=.4;target.x=Math.max(30,Math.min(W-30,target.x-dx/dist*34));target.y=Math.max(30,Math.min(H-30,target.y-dy/dist*34));}}
+      const ps=[...room.players.values()];if(room.score>=14)endRoom(room,'team','هسته شارژ شد؛ هر دو برنده‌اید!');else if(ps.every(p=>p.hp<=0))endRoom(room,'drones','پهپادها میدان را گرفتند!');else if(room.timeLeft<=0)endRoom(room,'drones','زمان تمام شد؛ این بار دوباره تلاش کنید.');
+    }
+  }
+  function publicState(room) {
+    return {room:room.code,mode:room.mode,status:room.status,players:[...room.players.values()].map(p=>({id:p.id,name:p.name,x:p.x,y:p.y,faceX:p.faceX,faceY:p.faceY,score:p.score,hp:p.hp,dashCooldown:p.dashCooldown,attackFlash:p.attackFlash,invuln:p.invuln,flash:p.flash})),
+      orbs:room.orbs.map(o=>({id:o.id,x:o.x,y:o.y,pulse:o.pulse})),drones:room.drones.map(d=>({id:d.id,x:d.x,y:d.y,phase:d.phase})),score:room.score,elapsed:room.elapsed,timeLeft:room.timeLeft,winner:room.winner,result:room.result};
+  }
+  function publishHostRoom() {
+    if(!hostRoom)return;const state=publicState(hostRoom);latest=state;updateUI();
+    for(const conn of connections)if(conn.open){try{conn.send({type:'state',state});}catch{}}
+  }
+  function stopNetwork() {
+    if(hostTick){clearInterval(hostTick);hostTick=null;}
+    for(const conn of connections){try{conn.close();}catch{}}connections.clear();
+    if(hostConn){try{hostConn.close();}catch{}hostConn=null;}
+    if(peer){try{peer.destroy();}catch{}peer=null;}
+    hostRoom=null;hostPlayerId=null;hostPeerId='';invitationURL='';role='';
+  }
+  function handleHostMessage(conn,msg) {
+    if(!hostRoom||!msg||typeof msg!=='object')return;
+    if(msg.type==='join'){
+      if(conn._playerId)return;
+      if(String(msg.room||'').toUpperCase()!==roomCode){try{conn.send({type:'error',message:'این لینک برای اتاق دیگری است؛ لینک تازه را از میزبان بگیر.'});}catch{}return;}
+      if(hostRoom.players.size>=2){try{conn.send({type:'error',message:'این اتاق از قبل پر است.'});}catch{}return;}
+      const p=newPlayer(msg.name,1);hostRoom.players.set(p.id,p);conn._playerId=p.id;connections.add(conn);
+      try{conn.send({type:'joined',id:p.id,room:roomCode,mode:hostRoom.mode,playerNo:2});}catch{}
+      startRoom(hostRoom);publishHostRoom();
+    }else if(msg.type==='input'&&conn._playerId){const p=hostRoom.players.get(conn._playerId);if(p)p.input={dx:Math.max(-1,Math.min(1,Number(msg.input?.dx)||0)),dy:Math.max(-1,Math.min(1,Number(msg.input?.dy)||0)),attack:!!msg.input?.attack,dash:!!msg.input?.dash};}
+    else if(msg.type==='restart'&&hostRoom.players.size===2){startRoom(hostRoom);publishHostRoom();}
+  }
+  function joinGuest(targetPeerId, name) {
+    role='guest';peer=new Peer();
+    peer.on('open',()=>{
+      try{hostConn=peer.connect(targetPeerId,{reliable:true});}catch{joinPending=false;setError('اتصال ساخته نشد؛ لینک دعوت را دوباره باز کن.');return;}
+      hostConn.on('open',()=>{hostConn.send({type:'join',room:roomCode,mode:selectedMode,name});});
+      hostConn.on('data',acceptMessage);
+      hostConn.on('error',()=>{joinPending=false;setError('اتصال به میزبان ناموفق شد. لینک را دوباره باز کن و مطمئن شوید میزبان داخل بازی است.');});
+      hostConn.on('close',()=>{if(myId){connectionLost=true;$('#statusHint').textContent='ارتباط با میزبان قطع شد.';showOverlay('⚠️','اتصال قطع شد','میزبان از بازی خارج شده یا اینترنتش قطع شده است.','بازگشت',leaveGame);}});
+    });
+    peer.on('error',err=>{if(joinPending){joinPending=false;setError(err?.type==='peer-unavailable'?'میزبان پیدا نشد؛ مطمئن شوید صفحهٔ بازی او باز است.':'اتصال آنلاین برقرار نشد. اینترنت و مرورگر را بررسی کنید.');}});
+  }
+  function createHost(name) {
+    role='host';peer=new Peer();
+    peer.on('open',id=>{
+      hostPeerId=id;hostRoom=makeRoom(roomCode,selectedMode);const p=newPlayer(name,0);hostRoom.players.set(p.id,p);hostPlayerId=p.id;
+      invitationURL=invitationFor(hostPeerId,roomCode,selectedMode);
+      acceptMessage({type:'joined',id:p.id,room:roomCode,mode:selectedMode,playerNo:1});
+      publishHostRoom();
+      hostTick=setInterval(()=>{if(!hostRoom)return;updateRoom(hostRoom,1/30);publishHostRoom();},1000/30);
+    });
+    peer.on('connection',conn=>{
+      conn.on('data',msg=>handleHostMessage(conn,msg));
+      conn.on('close',()=>{
+        if(conn._playerId&&hostRoom){hostRoom.players.delete(conn._playerId);connections.delete(conn);hostRoom.status='waiting';hostRoom.winner=null;hostRoom.result='دوستت قطع شد؛ لینک دعوت را دوباره بفرست.';publishHostRoom();}
+      });
+      conn.on('error',()=>{});
+    });
+    peer.on('error',err=>{if(joinPending){joinPending=false;setError('ساخت اتاق آنلاین ناموفق شد. اتصال اینترنت را بررسی کن و دوباره تلاش کن.');}else if(!hostPeerId){setError('سرور اتصال PeerJS در دسترس نیست؛ چند لحظه بعد دوباره امتحان کن.');}});
+  }
+  function joinGame() {
+    if(joinPending||myId)return;
+    let code=roomInput.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+    if(!code){code=generateCode();roomInput.value=code;}
+    if(code.length<4){setError('کد اتاق باید حداقل ۴ حرف یا عدد باشد.');return;}
+    roomCode=code;joinPending=true;setError('در حال اتصال به سرویس آنلاین...');
+    const name=safeName(nameInput.value.trim()||'بازیکن');
+    if(!window.Peer){joinPending=false;setError('کتابخانه اتصال آنلاین بارگیری نشد. صفحه را با اینترنت باز کن و دوباره امتحان کن.');return;}
+    if(invitedPeerId){joinGuest(invitedPeerId,name);}
+    else{createHost(name);}
+  }
+  $('#joinBtn').addEventListener('click',joinGame);
+  roomInput.addEventListener('keydown',e=>{if(e.key==='Enter')joinGame();});
+  nameInput.addEventListener('keydown', e => { if(e.key==='Enter') joinGame(); });
+
+  function leaveGame() {
+    keys.clear();myId=null;latest=null;roomCode='';connectionLost=false;joinPending=false;
+    stopNetwork();setScreen('home');setError('');
+    const u=new URL(location.href);u.searchParams.delete('room');u.searchParams.delete('joinPeer');u.searchParams.delete('mode');history.replaceState(null,'',u.toString());
+    $('#joinBtn').textContent='ساخت اتاق و ورود ↗';
+  }
+  $('#leaveBtn').addEventListener('click',leaveGame);
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); return true; }
+    catch {
+      const el = document.createElement('textarea'); el.value=text; el.style.position='fixed'; el.style.opacity='0'; document.body.appendChild(el); el.select();
+      let ok=false; try { ok=document.execCommand('copy'); } catch {} el.remove(); return ok;
+    }
+  }
+  $('#copyInviteBtn').addEventListener('click', async () => {
+    const invite = invitationURL || (invitedPeerId ? location.href : '');
+    if (!invite) { $('#copyInviteBtn').textContent='لینک در حال آماده‌شدن…'; return; }
+    const ok = await copyText(invite);
+    $('#copyInviteBtn').textContent = ok ? 'لینک دعوت کپی شد ✓' : 'لینک دعوت را از نوار آدرس کپی کن';
+    setTimeout(()=>$('#copyInviteBtn').textContent='کپی دعوت',2200);
+  });
+  $('#overlayBtn').addEventListener('click', async () => {
+    const action=$('#overlayBtn').dataset.action;
+    if(action==='restart') sendNet({type:'restart'});
+    else if(action==='leave') leaveGame();
+    else if(action==='invite') { const invite=invitationURL||(invitedPeerId?location.href:'');if(invite)await copyText(invite);$('#overlayBtn').textContent='لینک دعوت کپی شد ✓';setTimeout(()=>$('#overlayBtn').textContent='کپی لینک دعوت',1400); }
+    else { await copyText(roomCode);$('#overlayBtn').textContent='کپی شد ✓';setTimeout(()=>$('#overlayBtn').textContent='کپی کد اتاق',1200); }
+  });
+  function showOverlay(icon, title, text, button, action) {
+    $('#matchOverlay').classList.remove('hidden'); $('#overlayIcon').textContent=icon; $('#overlayTitle').textContent=title; $('#overlayText').textContent=text; $('#overlayBtn').textContent=button;
+    $('#overlayBtn').dataset.action = action === 'restart' ? 'restart' : action === leaveGame ? 'leave' : action === 'invite' ? 'invite' : 'copy';
+  }
+  function updateOverlay() {
+    if (!latest) { showOverlay('◌','در انتظار بازیکن دوم...','لینک دعوت را برای دوستت بفرست تا از شهر دیگر وارد همین اتاق شود.','کپی لینک دعوت','invite'); return; }
+    if (latest.status === 'waiting') showOverlay('◌','در انتظار بازیکن دوم...', latest.players.length===1 ? 'لینک دعوت را برای دوستت بفرست؛ لازم نیست هم‌وای‌فای باشید.' : 'برای شروع، دو بازیکن لازم است.','کپی لینک دعوت','invite');
+    else if (latest.status === 'ended') {
+      let title = latest.result || 'پایان بازی';
+      let icon = '🏁';
+      if (activeMode === 'duel') { if (latest.winner === 'draw') icon='🤝'; else if (latest.winner === myId) icon='🏆'; else icon='⚡'; }
+      else { icon = latest.winner === 'team' ? '🏆' : '🛡️'; }
+      showOverlay(icon,title, activeMode==='coop' && latest.winner==='team' ? 'با همکاری هم میدان را پاک‌سازی کردید. آمادهٔ دور بعد هستید؟' : 'یک دور دیگر بازی کنید؛ این بار تاکتیکتان را عوض کنید.','بازی دوباره','restart');
+    } else $('#matchOverlay').classList.add('hidden');
+  }
+  function formatTime(seconds) { const s=Math.ceil(seconds||0); return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
+  function updateUI() {
+    if (!latest) return;
+    const players = [...latest.players].sort((a,b)=>a.id===myId?-1:b.id===myId?1:0);
+    const me = latest.players.find(p=>p.id===myId) || players[0];
+    const foe = latest.players.find(p=>p.id!==myId);
+    $('#playersLabel').textContent = `${latest.players.length} / 2 بازیکن`;
+    $('#timeLabel').textContent = formatTime(latest.timeLeft);
+    if (activeMode === 'duel') {
+      $('#p1Label').textContent = me ? `تو · ${me.name}` : 'بازیکن ۱'; $('#p1Score').textContent = me ? me.score : '0'; $('#p1Extra').textContent='انرژی';
+      $('#p2Label').textContent = foe ? foe.name : 'منتظر رقیب'; $('#p2Score').textContent = foe ? foe.score : '—'; $('#p2Extra').textContent='انرژی';
+      $('#objectiveLabel').textContent='اول به ۱۰ امتیاز';
+    } else {
+      $('#p1Label').textContent = me ? `تو · ${me.name}` : 'بازیکن ۱'; $('#p1Score').textContent = me ? '♥'.repeat(Math.max(0,me.hp)) + '♡'.repeat(3-Math.max(0,me.hp)) : '♡♡♡'; $('#p1Extra').textContent='جان';
+      $('#p2Label').textContent = foe ? foe.name : 'هم‌تیمی'; $('#p2Score').textContent = foe ? '♥'.repeat(Math.max(0,foe.hp)) + '♡'.repeat(3-Math.max(0,foe.hp)) : '♡♡♡'; $('#p2Extra').textContent='جان';
+      $('#objectiveLabel').textContent=`انرژی مشترک ${latest.score}/14`;
+    }
+    $('#statusHint').textContent = latest.status==='playing' ? (activeMode==='duel'?'انرژی‌ها را جمع کن؛ حمله از روبه‌رو اثر دارد.':'کریستال جمع کن و پهپادها را با حمله از بین ببر.') : latest.status==='waiting' ? 'لینک دعوت را برای دوستت بفرست.' : 'پایان دور؛ برای شروع دوباره دکمه را بزن.';
+    updateOverlay();
+  }
+
+  // Keyboard and touch input share the same key-state set.
+  const preventKeys = new Set(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space']);
+  window.addEventListener('keydown', e => {
+    if (preventKeys.has(e.code) && gameScreen.classList.contains('active')) e.preventDefault();
+    const key = e.code==='Space'?'Space':e.code;
+    if (['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyJ','ShiftLeft','ShiftRight','KeyK'].includes(key)) keys.add(key);
+  });
+  window.addEventListener('keyup', e => { keys.delete(e.code); if(e.code==='ShiftLeft')keys.delete('ShiftRight'); });
+  window.addEventListener('blur', () => { keys.clear(); });
+  document.querySelectorAll('[data-key]').forEach(btn => {
+    const key = btn.dataset.key; if(key==='touchCenter') return;
+    const down = e => { e.preventDefault(); keys.add(key); btn.classList.add('held'); try{btn.setPointerCapture(e.pointerId)}catch{} };
+    const up = e => { e.preventDefault(); keys.delete(key); btn.classList.remove('held'); };
+    btn.addEventListener('pointerdown',down); btn.addEventListener('pointerup',up); btn.addEventListener('pointercancel',up); btn.addEventListener('lostpointercapture',up); btn.addEventListener('contextmenu',e=>e.preventDefault());
+  });
+  function getInput() {
+    let dx = 0, dy = 0;
+    if (keys.has('KeyA')||keys.has('ArrowLeft')) dx--; if(keys.has('KeyD')||keys.has('ArrowRight')) dx++;
+    if (keys.has('KeyW')||keys.has('ArrowUp')) dy--; if(keys.has('KeyS')||keys.has('ArrowDown')) dy++;
+    return {dx,dy,attack:keys.has('Space')||keys.has('KeyJ'),dash:keys.has('ShiftLeft')||keys.has('ShiftRight')||keys.has('KeyK')};
+  }
+  function sendNet(msg) {
+    if (!myId) return;
+    if (role === 'host') {
+      if (!hostRoom) return;
+      if (msg.type === 'input') { const p=hostRoom.players.get(myId); if(p)p.input={dx:Math.max(-1,Math.min(1,Number(msg.input?.dx)||0)),dy:Math.max(-1,Math.min(1,Number(msg.input?.dy)||0)),attack:!!msg.input?.attack,dash:!!msg.input?.dash}; }
+      else if(msg.type==='restart'&&hostRoom.players.size===2){startRoom(hostRoom);publishHostRoom();}
+    } else if(role === 'guest' && hostConn && hostConn.open) { try{hostConn.send(msg);}catch{} }
+  }
+  setInterval(() => { if(myId && gameScreen.classList.contains('active')) sendNet({type:'input',input:getInput()}); },50);
+
+  // Canvas rendering: the host device is authoritative for movement, hits and score.
+  function roundedRect(c,x,y,w,h,r) { c.beginPath(); c.roundRect(x,y,w,h,r); }
+  function drawArena() {
+    ctx.clearRect(0,0,W,H);
+    const bg=ctx.createLinearGradient(0,0,W,H); bg.addColorStop(0,'#101c2c'); bg.addColorStop(.58,'#0b1422'); bg.addColorStop(1,'#101323'); ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#263750';ctx.lineWidth=1;ctx.globalAlpha=.55;
+    for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+    for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+    ctx.globalAlpha=1;
+    // Outer perimeter and subtle corner marks
+    ctx.strokeStyle='#3c536b';ctx.lineWidth=3;ctx.strokeRect(10,10,W-20,H-20);
+    ctx.strokeStyle='#52f2dc';ctx.lineWidth=3;const marks=[[10,10,1,1],[W-10,10,-1,1],[10,H-10,1,-1],[W-10,H-10,-1,-1]];
+    for(const [x,y,sx,sy] of marks){ctx.beginPath();ctx.moveTo(x,y+sy*30);ctx.lineTo(x,y);ctx.lineTo(x+sx*30,y);ctx.stroke()}
+    // Central portal ring
+    ctx.beginPath();ctx.arc(W/2,H/2,85,0,Math.PI*2);ctx.strokeStyle='#7d6bff22';ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.arc(W/2,H/2,65,0,Math.PI*2);ctx.strokeStyle='#52f2dc16';ctx.setLineDash([5,10]);ctx.stroke();ctx.setLineDash([]);
+    for(const wall of WALLS){
+      roundedRect(ctx,wall.x+4,wall.y+7,wall.w,wall.h,12);ctx.fillStyle='#0005';ctx.fill();
+      roundedRect(ctx,wall.x,wall.y,wall.w,wall.h,12);ctx.fillStyle='#1e2b40';ctx.fill();ctx.strokeStyle='#3c506b';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#526b86';for(let i=0;i<3;i++){ctx.beginPath();ctx.arc(wall.x+20+i*13,wall.y+wall.h/2,2,0,Math.PI*2);ctx.fill()}
+    }
+    if(!latest) { ctx.fillStyle='#9ba8c2';ctx.font='600 18px Vazirmatn, Tahoma';ctx.textAlign='center';ctx.fillText('میدان آماده است',W/2,H/2+145);return; }
+    for(const orb of latest.orbs||[]) drawOrb(orb);
+    for(const d of latest.drones||[]) drawDrone(d);
+    const players = [...(latest.players||[])].sort((a,b)=>a.id===myId?1:b.id===myId?-1:0);
+    for(const p of players) drawPlayer(p);
+    // Mode glyph
+    ctx.textAlign='center';ctx.font='700 11px Vazirmatn, Tahoma';ctx.fillStyle='#7185a1';ctx.fillText(activeMode==='coop'?'CO-OP CORE':'ENERGY FIELD',W/2,H-22);
+  }
+  function drawOrb(o){
+    const r=9+Math.sin(o.pulse||0)*2;
+    ctx.save();ctx.translate(o.x,o.y);ctx.shadowBlur=22;ctx.shadowColor='#ffd66b';
+    ctx.rotate((o.pulse||0)*.12);ctx.beginPath();ctx.moveTo(0,-r-3);ctx.lineTo(r,0);ctx.lineTo(0,r+3);ctx.lineTo(-r,0);ctx.closePath();ctx.fillStyle='#ffd66b';ctx.fill();ctx.shadowBlur=0;ctx.beginPath();ctx.arc(0,0,3,0,Math.PI*2);ctx.fillStyle='#fff8d3';ctx.fill();ctx.restore();
+  }
+  function drawDrone(d){
+    ctx.save();ctx.translate(d.x,d.y);ctx.rotate((d.phase||0)*.1);ctx.shadowBlur=16;ctx.shadowColor='#ff647f';ctx.fillStyle='#5a2139';ctx.strokeStyle='#ff718b';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(0,-15);ctx.lineTo(14,-4);ctx.lineTo(10,12);ctx.lineTo(-10,12);ctx.lineTo(-14,-4);ctx.closePath();ctx.fill();ctx.stroke();ctx.shadowBlur=0;
+    ctx.beginPath();ctx.arc(0,0,4,0,Math.PI*2);ctx.fillStyle='#ffcad3';ctx.fill();
+    for(let i=0;i<4;i++){const a=i*Math.PI/2+(d.phase||0)*.4;ctx.beginPath();ctx.moveTo(Math.cos(a)*14,Math.sin(a)*14);ctx.lineTo(Math.cos(a)*22,Math.sin(a)*22);ctx.strokeStyle='#ff718b';ctx.stroke()}
+    ctx.restore();
+  }
+  function drawPlayer(p){
+    const mine=p.id===myId, color=mine?'#52f2dc':'#ff5d97', dark=mine?'#154d4a':'#572039';
+    ctx.save();ctx.translate(p.x,p.y);
+    if(p.invuln>0&&Math.floor(performance.now()/80)%2===0)ctx.globalAlpha=.45;
+    // shadow
+    ctx.beginPath();ctx.ellipse(1,8,20,12,0,0,Math.PI*2);ctx.fillStyle='#0005';ctx.fill();
+    if(p.attackFlash>0){ctx.beginPath();ctx.arc(0,0,34+(0.20-p.attackFlash)*185,0,Math.PI*2);ctx.strokeStyle=color;ctx.globalAlpha=Math.max(.1,p.attackFlash/.2)*.7;ctx.lineWidth=4;ctx.stroke();ctx.globalAlpha=1;}
+    ctx.shadowBlur=18;ctx.shadowColor=color;ctx.beginPath();ctx.arc(0,0,17,0,Math.PI*2);ctx.fillStyle=dark;ctx.fill();ctx.lineWidth=3;ctx.strokeStyle=color;ctx.stroke();ctx.shadowBlur=0;
+    ctx.beginPath();ctx.arc(0,0,9,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+    ctx.beginPath();ctx.moveTo(p.faceX*5,p.faceY*5);ctx.lineTo(p.faceX*25,p.faceY*25);ctx.strokeStyle='#f7fbff';ctx.lineWidth=4;ctx.lineCap='round';ctx.stroke();
+    if(p.dashCooldown>0){ctx.beginPath();ctx.arc(0,0,22,-Math.PI/2,-Math.PI/2+Math.PI*2*(1-Math.min(1,p.dashCooldown/1.45)));ctx.strokeStyle=color;ctx.lineWidth=2;ctx.globalAlpha=.6;ctx.stroke();ctx.globalAlpha=1;}
+    ctx.restore();
+    ctx.textAlign='center';ctx.font='700 12px Vazirmatn, Tahoma';ctx.fillStyle=mine?'#b6fff5':'#ffd0df';ctx.shadowColor='#000';ctx.shadowBlur=5;ctx.fillText((mine?'تو · ':'')+p.name,p.x,p.y-29);ctx.shadowBlur=0;
+  }
+  function loop(){ drawArena(); requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+  // Hint generated invite links are portable across deployments; local addresses only work on the same network.
+})();
+</script>
+</body>
+</html>
